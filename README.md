@@ -67,3 +67,11 @@ taskboard/
 ├── README.md
 └── requirements.txt
 ```
+
+## Validation rules
+
+- **title**: required on create, trimmed, 1–200 characters, never `null` (`422` if violated).
+- **description**: optional, up to 2,000 characters (`422` if violated).
+- **status**: one of `todo`, `in_progress`, `done` (default `todo`), never `null` (`422` if violated).
+- **Unknown fields** (e.g. `id`, `owner`): forbidden (`422` if sent).
+- **task_id** (path parameter): positive integer (`>= 1`); `422` if invalid/non-positive, `404` if unknown.
